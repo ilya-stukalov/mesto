@@ -1,0 +1,11 @@
+
+.footer {
+  width: 68.75%;
+  margin: 0 auto; /* to do: марджины убрать из блоков; */
+}
+
+@media screen and (min-width: 1280px) {
+	.footer {
+		max-width: 984px;
+	}
+}
