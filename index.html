@@ -11,7 +11,9 @@
 <body>
   <div class="page">
     <header class="header">
-      <img class="header__logo" src="./images/header-logo.svg" alt="логотип">
+      <div class="header__container">
+        <img class="header__logo" src="./images/header-logo.svg" alt="логотип">
+      </div>
     </header>
     <main class="content">
       <section class="profile">
@@ -19,53 +21,53 @@
           <img class="profile__avatar" src="./images/jak-iv-kusto.jpg" alt="аватар">
           <div class="profile__container-text">
             <h1 class="profile__name">Жак&#8209;Ив&nbsp;Кусто</h1>
-            <button class="profile__edit-button"></button>
+            <button class="profile__edit-button" type="button"></button>
             <p class="profile__description">Исследователь океана</p>
           </div>
         </div>
-        <button class="profile__add-button"></button>
+        <button class="profile__add-button" type="button"></button>
       </section>
       <section class="elements">
         <div class="element">
           <img class="element__photo" src="./images/karachaevsk.jpg" alt="фото Карачаевска">
           <div class="element__container">
             <h2 class="element__text">Карачаевск</h2>
-            <button class="element__button"></button>
+            <button class="element__button" type="button"></button>
           </div>
         </div>
         <div class="element">
           <img class="element__photo" src="./images/elbrus.jpg" alt="фото Эльбруса">
           <div class="element__container">
             <h2 class="element__text">Гора Эльбрус</h2>
-            <button class="element__button"></button>
+            <button class="element__button" type="button"></button>
           </div>
         </div>
         <div class="element">
           <img class="element__photo" src="./images/dombai.jpg" alt="фото Домбая">
           <div class="element__container">
             <h2 class="element__text">Домбай</h2>
-            <button class="element__button"></button>
+            <button class="element__button" type="button"></button>
           </div>
         </div>
         <div class="element">
           <img class="element__photo" src="./images/elbrus.jpg" alt="фото Эльбруса">
           <div class="element__container">
             <h2 class="element__text">Гора Эльбрус</h2>
-            <button class="element__button"></button>
+            <button class="element__button" type="button"></button>
           </div>
         </div>
         <div class="element">
           <img class="element__photo" src="./images/dombai.jpg" alt="фото Домбая">
           <div class="element__container">
             <h2 class="element__text">Домбай</h2>
-            <button class="element__button"></button>
+            <button class="element__button" type="button"></button>
           </div>
         </div>
         <div class="element">
           <img class="element__photo" src="./images/karachaevsk-2.jpg" alt="фото Карачаево-Черкессии">
           <div class="element__container">
             <h2 class="element__text">Карачаево-Черкессия</h2>
-            <button class="element__button"></button>
+            <button class="element__button" type="button"></button>
           </div>
         </div>
       </section>
@@ -75,13 +77,13 @@
     </footer>
     <div class="popup">
       <div class="popup__container">
-        <img class="popup__close-icon" src="./images/close_icon.svg" alt="значок закрытия окна">
+        <button class="popup__close-icon" type="button"></button>
         <div class="form">
-          <p class="form__text">Редактировать профиль</p>
-          <form class="form__container">
+          <h2 class="form__text">Редактировать профиль</h2>
+          <form class="form__container" name="profile_form">
             <fieldset class="form__main-info">
-              <input class="form__item form__item_type_name" type="text">
-              <input class="form__item form__item_type_description" type="text">
+              <input class="form__item form__item_type_name" name="name" type="text">
+              <input class="form__item form__item_type_description" name="description" type="text">
             </fieldset>
             <button class="form__button" type="submit">Сохранить</button>
           </form>
@@ -89,7 +91,7 @@
       </div>
     </div>
   </div>
-  <script src="./blocks/popup/_opened/popup_opened.js"></script>
+  <script src="./scripts/popup_opened.js"></script>
 </body>
 
 </html>
