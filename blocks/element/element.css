@@ -5,7 +5,7 @@
  border-radius: 10% 10% 10% 10%;
 }
 
-@media screen and (max-width: 779px) {
+@media screen and (min-width: 700px) and (max-width: 779px) {
 	.element {
 		width: 282px;
 	}
@@ -13,3 +13,14 @@
 
 
 
+@media screen and (max-width: 699px) {
+	.element {
+		width: 282px;
+    margin-bottom: 20px;
+	}
+
+  .element:last-of-type {
+    margin-bottom: 0;
+	}
+
+}

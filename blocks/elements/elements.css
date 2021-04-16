@@ -33,6 +33,7 @@
     flex-direction: column;
     align-items: center;
     padding-top: 36px;
+    gap: 0;
 	}
 }
 
@@ -40,5 +41,6 @@
 	.elements {
     width: 90%;
     grid-template-columns: repeat(2, 282px);
+
 	}
 }
