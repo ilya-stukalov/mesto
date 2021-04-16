@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" href="./pages/index.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Сервис Место</title>
+  <title>Сервис - Место</title>
 </head>
 
 <body>
@@ -16,69 +16,80 @@
     <main class="content">
       <section class="profile">
         <div class="profile__container">
-          <img class="profile__avatar" src="./images/jak-iv-kusto.jpg">
+          <img class="profile__avatar" src="./images/jak-iv-kusto.jpg" alt="аватар">
           <div class="profile__container-text">
             <h1 class="profile__name">Жак&#8209;Ив&nbsp;Кусто</h1>
-            <button class="profile__edit-button">
-            </button>
+            <button class="profile__edit-button"></button>
             <p class="profile__description">Исследователь океана</p>
           </div>
         </div>
-        <div class="profile__add-button">
-          <!--  to do -->
-          <img class="profile__add-button-img" src="./images/add-button.png"><!--  to do -->
-        </div><!--  to do -->
+        <button class="profile__add-button"></button>
       </section>
       <section class="elements">
         <div class="element">
-          <img class="element__photo" src="./images/karachaevsk.jpg">
+          <img class="element__photo" src="./images/karachaevsk.jpg" alt="фото Карачаевска">
           <div class="element__container">
             <h2 class="element__text">Карачаевск</h2>
             <button class="element__button"></button>
           </div>
         </div>
         <div class="element">
-          <img class="element__photo" src="./images/elbrus.jpg">
+          <img class="element__photo" src="./images/elbrus.jpg" alt="фото Эльбруса">
           <div class="element__container">
             <h2 class="element__text">Гора Эльбрус</h2>
             <button class="element__button"></button>
           </div>
         </div>
         <div class="element">
-          <img class="element__photo" src="./images/dombai.jpg">
+          <img class="element__photo" src="./images/dombai.jpg" alt="фото Домбая">
           <div class="element__container">
             <h2 class="element__text">Домбай</h2>
             <button class="element__button"></button>
           </div>
         </div>
         <div class="element">
-          <img class="element__photo" src="./images/elbrus.jpg">
+          <img class="element__photo" src="./images/elbrus.jpg" alt="фото Эльбруса">
           <div class="element__container">
             <h2 class="element__text">Гора Эльбрус</h2>
             <button class="element__button"></button>
           </div>
         </div>
         <div class="element">
-          <img class="element__photo" src="./images/dombai.jpg">
+          <img class="element__photo" src="./images/dombai.jpg" alt="фото Домбая">
           <div class="element__container">
             <h2 class="element__text">Домбай</h2>
             <button class="element__button"></button>
           </div>
         </div>
         <div class="element">
-          <img class="element__photo" src="./images/karachaevsk-2.jpg">
+          <img class="element__photo" src="./images/karachaevsk-2.jpg" alt="фото Карачаево-Черкессии">
           <div class="element__container">
-            <h2 class="element__text">Карачаево-Ч...</h2>
+            <h2 class="element__text">Карачаево-Черкессия</h2>
             <button class="element__button"></button>
           </div>
         </div>
-
       </section>
     </main>
     <footer class="footer">
       <p class="footer__text">© 2020 Mesto Russia</p>
     </footer>
+    <div class="popup">
+      <div class="popup__container">
+        <img class="popup__close-icon" src="./images/close_icon.svg">
+        <div class="form__container">
+          <p class="form__text">Редактировать профиль</p>
+          <form class="form">
+            <fieldset class="form__main-info">
+              <input class="form__item form__item_type_name" type="text">
+              <input class="form__item form__item_type_description" type="text">
+            </fieldset>
+            <button class="form__button" type="submit">Сохранить</и>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
+  <script src="./blocks/popup/_opened/popup_opened.js"></script>
 </body>
 
 </html>

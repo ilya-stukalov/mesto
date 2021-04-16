@@ -1,0 +1,18 @@
+.popup__close-icon {
+  align-self:flex-end;
+  width: 40px;
+  height: 40px;
+}
+
+@media screen and (max-width: 779px) {
+	.popup__close-icon {
+    margin-bottom: 13.65px;
+	}
+}
+
+
+.popup__close-icon:hover {
+  opacity: 0.6;
+  transition: 2s;
+  cursor: pointer;
+}

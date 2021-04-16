@@ -11,3 +11,18 @@
   padding: 0;
   align-self: end;
 }
+
+@media screen and (max-width: 779px) {
+	.profile__edit-button {
+    width: 18px;
+    height: 18px;
+    margin-left: 10px;
+    align-self: center;
+	}
+}
+
+.profile__edit-button:hover {
+  opacity: 0.6;
+  transition: 2s;
+  cursor: pointer;
+}
