@@ -1,5 +1,5 @@
 
-.popup {
+.popup-photo {
   visibility: hidden;
   display: flex;
   background-color: rgba(0, 0, 0, 0.5);
@@ -12,8 +12,6 @@
   bottom: 0;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  opacity: 0;
   transition: visibility .3s, opacity .3s ease;
+  opacity: 0;
 }
-
