@@ -40,8 +40,9 @@
           <h2 class="form__text">Редактировать профиль</h2>
           <form class="form__container" name="profile_form">
             <fieldset class="form__main-info">
-              <input class="form__item form__item_type_name" name="name" type="text">
-              <input class="form__item form__item_type_description" name="description" type="text">
+              <input class="form__item form__item_type_name" name="name" type="text" placeholder="Название">
+              <input class="form__item form__item_type_description" name="description" type="text"
+                placeholder="Описание">
             </fieldset>
             <button class="form__button" type="submit">Сохранить</button>
           </form>
@@ -56,33 +57,32 @@
           <form class="form__container" name="profile_form">
             <fieldset class="form__main-info">
               <input class="form__item form__item_type_name" name="name" type="text" placeholder="Название">
-              <input class="form__item form__item_type_description" name="description" type="text" placeholder="Ссылка на картинку">
+              <input class="form__item form__item_type_description" name="description" type="url"
+                placeholder="Ссылка на картинку">
             </fieldset>
             <button class="form__button" type="submit">Сохранить</button>
           </form>
         </div>
       </div>
     </div>
-
-    <div class="popup-photo" id="popup-photo">
-      <div class="popup-photo__container">
-        <button class="popup-photo__close-icon" type="button"></button>
-        <img class="popup-photo__img" src="#" alt="всплывающее фото">
-        <p class="popup-photo__description"></p>
+    <div class="popup" id="popup-photo">
+      <div class="popup__container">
+        <button class="popup__close-icon" type="button"></button>
+        <img class="popup__img" src="#" alt="всплывающее фото">
+        <p class="popup__description"></p>
       </div>
     </div>
-
-  <template id ="cards">
-    <div class="element">
-      <img class="element__photo">
-      <button class="element__trash-button" type="button"></button>
-      <div class="element__container">
-        <h2 class="element__text"></h2>
-        <button class="element__button" type="button"></button>
+    <template id="cards">
+      <div class="element">
+        <img class="element__photo">
+        <button class="element__trash-button" type="button"></button>
+        <div class="element__container">
+          <h2 class="element__text"></h2>
+          <button class="element__button" type="button"></button>
+        </div>
       </div>
-    </div>
-  </template>
-  <script src="./scripts/popup_opened.js"></script>
+    </template>
+    <script src="./scripts/script.js"></script>
   </div>
 </body>
 
