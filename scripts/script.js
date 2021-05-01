@@ -74,27 +74,28 @@ function formSubmitHandler (evt) {
 function createCard(cardName, cardLink)  {
   const cardTemplate = document.querySelector('#cards').content;
   const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
-  const deleteButton = document.querySelector('.element__trash-button');
   const cardNameAlt = 'Изображение' + ' ' + cardName;
   const popupPhotoImg = document.querySelector('.popup__img');
   const popupPhotoDescription = document.querySelector('.popup__description');
-  cardElement.querySelector('.element__text').textContent = cardName;
-  cardElement.querySelector('.element__photo').src = cardLink;
-  cardElement.querySelector('.element__photo').alt = cardNameAlt;
-  cardElement.querySelector('.element__button').addEventListener('click', function (evt) {
+  const elementPhoto = cardElement.querySelector('.element__photo');
+  const elementText = cardElement.querySelector('.element__text');
+  const elementButton = cardElement.querySelector('.element__button');
+  const elementTrashButton = cardElement.querySelector('.element__trash-button');
+  elementText.textContent = cardName;
+  elementPhoto.src = cardLink;
+  elementPhoto.alt = cardNameAlt;
+  elementButton.addEventListener('click', function (evt) {
   evt.target.classList.toggle('element__button_active');
   });
-  cardElement.querySelector('.element__trash-button').addEventListener('click', function (evt) {
+  elementTrashButton.addEventListener('click', function (evt) {
     evt.target.closest('.element').remove();
   });
-  cardElement.querySelector('.element__photo').addEventListener('click', function() {
+  elementPhoto.addEventListener('click', function() {
     popupPhotoImg.setAttribute('src', cardLink);
     popupPhotoImg.setAttribute('alt', cardName);
-    console.log(cardName);
     popupPhotoDescription.textContent = cardName;
     openPopup(popupPhoto);
   });
-  console.log(cardElement);
   return cardElement;
 }
 
