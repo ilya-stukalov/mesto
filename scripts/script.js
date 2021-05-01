@@ -92,7 +92,7 @@ function createCard(cardName, cardLink)  {
   });
   elementPhoto.addEventListener('click', function() {
     popupPhotoImg.setAttribute('src', cardLink);
-    popupPhotoImg.setAttribute('alt', cardName);
+    popupPhotoImg.setAttribute('alt', cardNameAlt);
     popupPhotoDescription.textContent = cardName;
     openPopup(popupPhoto);
   });
