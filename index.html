@@ -21,11 +21,11 @@
           <img class="profile__avatar" src="./images/jak-iv-kusto.jpg" alt="аватар">
           <div class="profile__container-text">
             <h1 class="profile__name">Жак&#8209;Ив&nbsp;Кусто</h1>
-            <button class="profile__edit-button" type="button"></button>
+            <button class="profile__edit-button button-call-popup" type="button"></button>
             <p class="profile__description">Исследователь океана</p>
           </div>
         </div>
-        <button class="profile__add-button" type="button"></button>
+        <button class="profile__add-button button-call-popup" type="button"></button>
       </section>
       <div class="elements">
       </div>
@@ -38,11 +38,13 @@
         <button class="popup__close-icon" type="button"></button>
         <div class="form">
           <h2 class="form__text">Редактировать профиль</h2>
-          <form class="form__container" name="profile_form">
+          <form class="form__container" name="profile_form" novalidate>
             <fieldset class="form__main-info">
-              <input class="form__item form__item_type_name" name="name" type="text" placeholder="Название">
-              <input class="form__item form__item_type_description" name="description" type="text"
-                placeholder="Описание">
+              <input class="form__item form__item_type_name" name="name" id="profile-name-input" type="text" placeholder="Название" required minlength="2" maxlength="40">
+              <span class="form__item-error profile-name-input-error"></span>
+              <input class="form__item form__item_type_description" name="description" id="profile-description-input" type="text"
+                placeholder="Описание" required minlength="2" maxlength="200">
+              <span class="form__item-error profile-description-input-error"></span>
             </fieldset>
             <button class="form__button" type="submit">Сохранить</button>
           </form>
@@ -54,11 +56,13 @@
         <button class="popup__close-icon" type="button"></button>
         <div class="form">
           <h2 class="form__text">Новое место</h2>
-          <form class="form__container" name="profile_form">
+          <form class="form__container" name="place_form" novalidate>
             <fieldset class="form__main-info">
-              <input class="form__item form__item_type_name" name="name" type="text" placeholder="Название">
-              <input class="form__item form__item_type_description" name="description" type="url"
-                placeholder="Ссылка на картинку">
+              <input class="form__item form__item_type_name"  name="name" type="text" id="place-name-input" placeholder="Название" required minlength="2" maxlength="30">
+              <span class="form__item-error place-name-input-error"></span>
+              <input class="form__item form__item_type_description" name="description" id="place-description-input" type="url"
+                placeholder="Ссылка на картинку" required>
+              <span class="form__item-error place-description-input-error"></span>
             </fieldset>
             <button class="form__button" type="submit">Сохранить</button>
           </form>
@@ -82,6 +86,7 @@
         </div>
       </div>
     </template>
+    <script src="./scripts/validate.js"></script>
     <script src="./scripts/script.js"></script>
   </div>
 </body>

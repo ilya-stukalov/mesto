@@ -5,8 +5,8 @@ const closeButton = popupEditProfile.querySelector('.popup__close-icon');
 const formElement = popupEditProfile.querySelector('.form__container');
 const nameInput = popupEditProfile.querySelector('.form__item_type_name');
 const jobInput = popupEditProfile.querySelector('.form__item_type_description');
-const title = document.querySelector('.profile__name');
 
+const title = document.querySelector('.profile__name');
 const description = document.querySelector('.profile__description');
 
 const initialCards = [
@@ -50,21 +50,38 @@ const elementPhoto = document.querySelectorAll('.element__photo');
 const elementPhotoArray = Array.from(elementPhoto);
 const popupPhotoCloseButton = popupPhoto.querySelector('.popup__close-icon');
 
+const keyHandler = (evt) => {
+  if (evt.key === 'Escape') {
+    const popupActive = document.querySelector('.popup_opened');
+    popupActive.classList.remove('popup_opened');
+
+  }
+}
+
+
+
+
+
+
 function openPopup(item) {
   item.classList.add('popup_opened');
+  document.addEventListener('keyup', keyHandler);
+
 }
 
 function closePopup(item) {
   item.classList.remove('popup_opened');
+  document.removeEventListener('keyup', keyHandler);
 }
 
-function fillInputsPoputProfile() {
+function fillInputsPopupProfile() {
   openPopup(popup);
+
   nameInput.value = title.textContent;
   jobInput.value = description.textContent;
 }
 
-function formSubmitHandler (evt) {
+ function formSubmitHandler (evt) {
   evt.preventDefault();
   title.textContent = nameInput.value;
   description.textContent = jobInput.value;
@@ -96,6 +113,7 @@ function createCard(cardName, cardLink)  {
     popupPhotoDescription.textContent = cardName;
     openPopup(popupPhoto);
   });
+
   return cardElement;
 }
 
@@ -114,14 +132,29 @@ initialCards.forEach(function(item) {
   addCard(elementsContainer, createCard(item.name, item.link));
 });
 
+function cardOverlayClickClose(evt) {
+  evt.target.classList.remove('popup_opened');
+}
 
-
-editButton.addEventListener('click', fillInputsPoputProfile);
+editButton.addEventListener('click', fillInputsPopupProfile);
 closeButton.addEventListener('click', () => closePopup(popup));
 formElement.addEventListener('submit', formSubmitHandler);
-
 addButton.addEventListener('click', () => openPopup(popupEditCard));
 cardCloseButton.addEventListener('click', () => closePopup(popupEditCard));
 cardFormElement.addEventListener('submit', cardFormSubmitHandler);
-
 popupPhotoCloseButton.addEventListener('click', () => closePopup(popupPhoto));
+cardCloseButton.addEventListener('click', () => closePopup(popupEditCard));
+
+//close popupPhoto after click on overlay
+popupPhoto.addEventListener('click', cardOverlayClickClose);
+
+//turn on validation:
+enableValidation({
+  formSelector: '.form__container',
+  inputSelector: '.form__item',
+  submitButtonSelector: '.form__button',
+  inactiveButtonClass: 'form__button_inactive',
+  inputErrorClass: 'form__item_type_error',
+  errorClass: 'form__item-error_active',
+  openPopupButton: '.button-call-popup'
+});
