@@ -37,8 +37,6 @@ const toggleButtonState = (buttonElement, inputList, objConfig) => {
   else {
     buttonElement.classList.remove(inactiveButtonClass);
     buttonElement.disabled = false;
-    inputList.forEach((item) => {item.nextElementSibling.classList.remove(errorClass);});
-    inputList.forEach((item) => {item.classList.remove(inputErrorClass);});
   }
 }
 
@@ -49,17 +47,10 @@ const setEventListeners = (formElement, objConfig ) => {
   //prevent page reload:
   formElement.addEventListener('submit', (evt) => {
     evt.preventDefault();
-
   });
 
   //find all inputs:
   const inputList = Array.from(formElement.querySelectorAll(inputSelector));
-
-  openPopupButtonList.forEach((openPopupButtonElement) => {
-    openPopupButtonElement.addEventListener('click', function () {
-      toggleButtonState(buttonElement, inputList, restConfig);
-    });
-  });
 
   //find the only submit button:
   const buttonElement = formElement.querySelector(submitButtonSelector);
@@ -87,3 +78,18 @@ const enableValidation = (objConfig) => {
      setEventListeners(formElement, restConfig);
   });
 }
+
+const clearValidation = (formElement, objConfig) => {
+  const { errorClass, inputErrorClass, submitButtonSelector, inactiveButtonClass, ...restConfig } = objConfig;
+  const errorElements = Array.from(formElement.querySelectorAll(`.${errorClass}`));
+  const inputList = Array.from(formElement.querySelectorAll(`.${inputErrorClass}`));
+  const buttonElement = formElement.querySelector(submitButtonSelector);
+  errorElements.forEach((errorElement) => {
+    errorElement.classList.remove(errorClass);
+  })
+  inputList.forEach((input) => {
+    input.classList.remove(inputErrorClass);
+  })
+  buttonElement.classList.remove(inactiveButtonClass);
+  buttonElement.disabled = false;
+  }
