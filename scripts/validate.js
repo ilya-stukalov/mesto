@@ -28,7 +28,6 @@ const hasInvalidInput = (inputList) => {
 }
 
 const toggleButtonState = (buttonElement, inputList, objConfig) => {
-
   const { inactiveButtonClass, inputErrorClass, errorClass,  ...restConfig } = objConfig;
    if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(inactiveButtonClass);
@@ -41,8 +40,7 @@ const toggleButtonState = (buttonElement, inputList, objConfig) => {
 }
 
 const setEventListeners = (formElement, objConfig ) => {
-  const { inputSelector, submitButtonSelector, openPopupButton, ...restConfig } = objConfig;
-  const openPopupButtonList = Array.from(document.querySelectorAll(openPopupButton));
+  const { inputSelector, submitButtonSelector, ...restConfig } = objConfig;
 
   //prevent page reload:
   formElement.addEventListener('submit', (evt) => {
@@ -65,7 +63,6 @@ const setEventListeners = (formElement, objConfig ) => {
   });
 
   toggleButtonState(buttonElement, inputList, restConfig);
-
 }
 
 const enableValidation = (objConfig) => {
@@ -80,16 +77,12 @@ const enableValidation = (objConfig) => {
 }
 
 const clearValidation = (formElement, objConfig) => {
-  const { errorClass, inputErrorClass, submitButtonSelector, inactiveButtonClass, ...restConfig } = objConfig;
-  const errorElements = Array.from(formElement.querySelectorAll(`.${errorClass}`));
+  const {submitButtonSelector, inputErrorClass, ...restConfig } = objConfig;
   const inputList = Array.from(formElement.querySelectorAll(`.${inputErrorClass}`));
   const buttonElement = formElement.querySelector(submitButtonSelector);
-  errorElements.forEach((errorElement) => {
-    errorElement.classList.remove(errorClass);
-  })
-  inputList.forEach((input) => {
-    input.classList.remove(inputErrorClass);
-  })
-  buttonElement.classList.remove(inactiveButtonClass);
-  buttonElement.disabled = false;
+  inputList.forEach((inputElement) => {
+    hideError(formElement, inputElement, objConfig);
+  });
+  toggleButtonState(buttonElement, inputList, objConfig);
   }
+

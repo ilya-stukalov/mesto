@@ -26,17 +26,12 @@ const objConfig = {
   submitButtonSelector: '.form__button',
   inactiveButtonClass: 'form__button_inactive',
   inputErrorClass: 'form__item_type_error',
-  errorClass: 'form__item-error_active',
-  openPopupButton: '.button-call-popup'
+  errorClass: 'form__item-error_active'
 };
 
 const keyHandler = (evt) => {
   if (evt.key === 'Escape') {
-
-    const popupActive = document.querySelector('.popup_opened');
-    if (popupActive.id === 'popup-photo') {closePopup(popupPhoto)}
-    else if (popupActive.id === 'popup__edit-card') {closePopup(popupEditCard)}
-    else {closePopup(popupEditProfile)}
+    closePopup(document.querySelector('.popup_opened'));
   }
 }
 
@@ -51,10 +46,11 @@ function closePopup(item) {
 }
 
 function fillInputsPopupProfile() {
-  clearValidation(profileFormElement, objConfig);
+
   openPopup(popupEditProfile);
   nameInput.value = title.textContent;
   jobInput.value = description.textContent;
+  clearValidation(profileFormElement, objConfig);
 }
 
  function handleProfileSubmit (evt) {
