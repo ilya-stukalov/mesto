@@ -1,8 +1,10 @@
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
+import { initialCards } from './initial-cards.js';
 
 const popupEditProfile = document.querySelector('#popup__edit-profile');
 const popupEditCard = document.querySelector('#popup__edit-card');
-const popupPhoto = document.querySelector('#popup-photo');
-
+export const popupPhoto = document.querySelector('#popup-photo');
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileCloseButton = popupEditProfile.querySelector('.popup__close-icon');
 const profileFormElement = popupEditProfile.querySelector('.form__container');
@@ -28,7 +30,7 @@ const objConfig = {
   submitButtonSelector: '.form__button',
   inactiveButtonClass: 'form__button_inactive',
   inputErrorClass: 'form__item_type_error',
-  errorClass: 'form__item-error_active'
+  errorClass: 'form__item-error_active',
 };
 
 const keyHandler = (evt) => {
@@ -37,7 +39,7 @@ const keyHandler = (evt) => {
   }
 }
 
-function openPopup(item) {
+export function openPopup(item) {
   item.classList.add('popup_opened');
   document.addEventListener('keyup', keyHandler);
 }
@@ -52,7 +54,7 @@ function fillInputsPopupProfile() {
   openPopup(popupEditProfile);
   nameInput.value = title.textContent;
   jobInput.value = description.textContent;
-  clearValidation(profileFormElement, objConfig);
+  profileForm.clearValidation(profileFormElement);
 }
 
  function handleProfileSubmit (evt) {
@@ -62,49 +64,17 @@ function fillInputsPopupProfile() {
   closePopup(popupEditProfile);
 }
 
-function createCard(cardName, cardLink)  {
-  const cardTemplate = document.querySelector('#cards').content;
-  const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
-  const cardNameAlt = 'Изображение' + ' ' + cardName;
-  const popupPhotoImg = document.querySelector('.popup__img');
-  const popupPhotoDescription = document.querySelector('.popup__description');
-  const elementPhoto = cardElement.querySelector('.element__photo');
-  const elementText = cardElement.querySelector('.element__text');
-  const elementButton = cardElement.querySelector('.element__button');
-  const elementTrashButton = cardElement.querySelector('.element__trash-button');
-  elementText.textContent = cardName;
-  elementPhoto.src = cardLink;
-  elementPhoto.alt = cardNameAlt;
-  elementButton.addEventListener('click', function (evt) {
-  evt.target.classList.toggle('element__button_active');
-  });
-  elementTrashButton.addEventListener('click', function (evt) {
-    evt.target.closest('.element').remove();
-  });
-  elementPhoto.addEventListener('click', function() {
-    popupPhotoImg.setAttribute('src', cardLink);
-    popupPhotoImg.setAttribute('alt', cardNameAlt);
-    popupPhotoDescription.textContent = cardName;
-    openPopup(popupPhoto);
-  });
-
-  return cardElement;
+function createCard(cardName, cardLink) {
+  const card = new Card(cardName, cardLink, '#cards');
+  const cardElement = card.generateCard();
+  document.querySelector('.elements').prepend(cardElement);
 }
-
-function addCard(container, element) {
-    container.prepend(element);
-  }
 
 function cardFormSubmitHandler (evt) {
   evt.preventDefault();
-  addCard(elementsContainer, createCard(cardNameInput.value, cardLinkInput.value));
+  createCard(cardNameInput.value, cardLinkInput.value);
   closePopup(popupEditCard);
-  cardFormElement.reset();
 }
-
-initialCards.forEach(function(item) {
-  addCard(elementsContainer, createCard(item.name, item.link));
-});
 
 function popupOverlayClickClose (evt) {
   if (evt.target.classList.contains('popup_opened')) {
@@ -113,8 +83,10 @@ function popupOverlayClickClose (evt) {
 }
 
 function openEditCardPopup() {
+  cardFormElement.reset();
+  cardForm.clearValidation(cardFormElement);
   openPopup(popupEditCard);
-  toggleButtonState(buttonCardElement, inputCardList, objConfig);
+
 }
 
 profileEditButton.addEventListener('click', fillInputsPopupProfile);
@@ -134,4 +106,14 @@ popupPhoto.addEventListener('mousedown', popupOverlayClickClose);
 popupEditProfile.addEventListener('mousedown', popupOverlayClickClose);
 popupEditCard.addEventListener('mousedown', popupOverlayClickClose);
 
-enableValidation(objConfig);
+initialCards.forEach((item) => {
+ createCard(item.name, item.link);
+});
+
+const cardForm = new FormValidator (objConfig, cardFormElement);
+cardForm.enableValidation();
+
+const profileForm = new FormValidator (objConfig, profileFormElement);
+profileForm.enableValidation();
+
+
