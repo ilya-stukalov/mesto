@@ -39,6 +39,7 @@ export default class Card {
     this._element.querySelector('.element__photo').addEventListener('click', () => {
       this._handleCardClick();
     });
+
   }
 
   _handleButtonClick() {

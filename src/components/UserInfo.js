@@ -1,4 +1,3 @@
-
 export default class UserInfo {
   constructor( { userInfoNameSelector, userInfoDescriptionSelector } ) {
     this._userInfoNameSelector = userInfoNameSelector;
@@ -16,7 +15,6 @@ export default class UserInfo {
 
   setUserInfo(info) {
     this._userInfoData = this.getUserInfo();
-    console.log(this._userInfoData);
     this._userName.textContent = info.name;
     this._userDescription.textContent = info.description;
 
