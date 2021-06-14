@@ -11,7 +11,7 @@ import {profileEditButton,
   addButton,
   cardFormElement,
   containerSelector,
-  objConfig } from './../utils/constants.js';
+  objConfig, profileName, profileDescription} from './../utils/constants.js';
 
 const defaultCardList = new Section({
   items: initialCards,
@@ -33,9 +33,9 @@ const popupWithFormProfile = new PopupWithForm('#popup__edit-profile',
     popupWithFormProfile.close();
   },
   setInputs: () => {
-    document.querySelector('#profile-name-input').value = userInfo.getUserInfo().userName;
-    document.querySelector('#profile-description-input').value = userInfo.getUserInfo().userDescription;
-    profileForm.clearValidation(profileFormElement);
+    profileName.value = userInfo.getUserInfo().userName;
+    profileDescription.value = userInfo.getUserInfo().userDescription;
+    profileForm.clearValidation();
   }
 });
 
@@ -47,8 +47,7 @@ const popupWithFormCard = new PopupWithForm('#popup__edit-card',
     popupWithFormCard.close();
   },
   setInputs: () => {
-    document.querySelector('#place-name-input').value = '';
-    document.querySelector('#place-link-input').value = '';
+  cardForm.clearValidation();
   }
 });
 
@@ -61,7 +60,6 @@ const profileForm = new FormValidator(objConfig, profileFormElement);
 
 addButton.addEventListener('click', () => {
   popupWithFormCard.open();
-  cardForm.clearValidation(cardFormElement);
 });
 
 profileEditButton.addEventListener('click', () => {

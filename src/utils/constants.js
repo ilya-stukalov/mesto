@@ -5,6 +5,8 @@ export const profileFormElement = popupEditProfile.querySelector('.form__contain
 export const addButton = document.querySelector('.profile__add-button');
 export const cardFormElement = popupEditCard.querySelector('.form__container');
 export const containerSelector = '.elements';
+export const profileName = document.querySelector('#profile-name-input');
+export const profileDescription = document.querySelector('#profile-description-input');
 
 export const objConfig = {
   formSelector: '.form__container',
