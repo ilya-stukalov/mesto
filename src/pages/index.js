@@ -81,19 +81,11 @@ const defaultCardList = new Section({
   }
 }, containerSelector);
 
-
 api.getUserInfo()
   .then((res) => {
     userName.textContent = res.name;
     userDescription.textContent = res.about;
     userAvatar.src = res.avatar;
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-// еще раз вызываем метод, чтобы получить ownerID до генерации карт.
-api.getUserInfo()
-  .then((res) => {
     ownerId = res._id;
   })
   .catch((err) => {
