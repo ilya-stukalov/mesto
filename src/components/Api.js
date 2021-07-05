@@ -7,7 +7,12 @@ export default class Api {
     this._contentType = options.headers['Content-Type'];
     }
 
-
+  _checkResponse(res) {
+    if (!res.ok) {
+      return Promise.reject(`Error: ${res.status}`);
+      }
+      return res.json();
+  }
 
   getInitialCards() {
     return fetch(`${this._baseUrl}cards`, {
@@ -17,13 +22,7 @@ export default class Api {
           'Content-Type': this._contentType
       }
     })
-
-    .then((res) => {
-      if (!res.ok) {
-        return Promise.reject(`Error: ${res.status}`);
-        }
-        return res.json();
-        })
+    .then(this._checkResponse);
   }
 
 
@@ -35,13 +34,7 @@ export default class Api {
           'Content-Type': this._contentType
           }
         })
-      .then((res) => {
-        if (!res.ok) {
-          return Promise.reject(`Error: ${res.status}`);
-          }
-          return res.json();
-      
-      })  
+    .then(this._checkResponse); 
   }
 
   updateUserInfo(data) {
@@ -56,12 +49,7 @@ export default class Api {
         about: data.description
       })
     })
-      .then((res) => {
-        if (!res.ok) {
-          return Promise.reject(`Error: ${res.status}`);
-        }
-          return res.json();
-      })
+    .then(this._checkResponse);
   }
 
   insertNewCard(data) {
@@ -76,12 +64,7 @@ export default class Api {
         link: data.link
       }) 
     })
-      .then((res) => {
-        if (!res.ok) {
-          return Promise.reject(`Error: ${res.status}`);
-        }
-          return res.json();
-      })
+    .then(this._checkResponse);
   }
 
   putLike(id) {
@@ -92,12 +75,7 @@ export default class Api {
           'Content-Type': this._contentType
       }
     })
-      .then((res) => {
-        if (!res.ok) {
-        return Promise.reject(`Error: ${res.status}`);
-        }
-        return res.json();
-      })
+    .then(this._checkResponse);
   }
 
   deleteLike(id) {
@@ -108,12 +86,7 @@ export default class Api {
           'Content-Type': this._contentType
       }
       })
-      .then((res) => {
-        if (!res.ok) {
-        return Promise.reject(`Error: ${res.status}`);
-        }
-        return res.json();
-      })
+    .then(this._checkResponse);
   }
 
   updateAvatar(data) {
@@ -127,12 +100,7 @@ export default class Api {
         avatar: data.link
           })
       })
-      .then((res) => {
-        if (!res.ok) {
-        return Promise.reject(`Error: ${res.status}`);
-        }
-        return res.json();
-      })
+    .then(this._checkResponse);
   }
 
   deletePhoto(id) {
@@ -144,11 +112,6 @@ export default class Api {
       }
 
     })
-      .then((res) => {
-        if (!res.ok) {
-        return Promise.reject(`Error: ${res.status}`);
-        }
-        return res.json();
-      })
+    .then(this._checkResponse);
   }
 }

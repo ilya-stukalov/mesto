@@ -1,22 +1,21 @@
 import Popup from './Popup.js';
 
 export default class PopupWithConfirm extends Popup {
-    constructor(popupSelector, id, element, { api }) {
+    constructor(popupSelector, { api }) {
         super(popupSelector);
         this._api = api;
-        this._id = id;
-        this._element = element;
+        super.setEventListeners();   //повесить слушатель на иконку закрытия
     }
 
-    open() {
+    open(id, element) {
       super.open();
-      this.setEventListeners();
+      this._popup.addEventListener('submit', this._deleteCard);
+      this._id = id;
+      this._element = element;
     }
     
-
     _deleteCard = (evt) => {
         evt.preventDefault();
-        this.close();
         this._api(this._id, this._element);
     }
 
@@ -24,12 +23,4 @@ export default class PopupWithConfirm extends Popup {
       super.close();
       this._popup.removeEventListener('submit', this._deleteCard);
     }
-    
-
-    setEventListeners() {
-      super.setEventListeners();
-      this._popup.addEventListener('submit', this._deleteCard);
-        
-    };
-
 }

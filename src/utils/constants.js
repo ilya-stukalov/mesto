@@ -10,9 +10,7 @@ export const profileDescription = document.querySelector('#profile-description-i
 export const avatarEditButton = document.querySelector('.profile__button-avatar-change');
 export const popupWithAvatar = document.querySelector('#popup__edit-avatar');
 export const avatarFormElement = popupWithAvatar.querySelector('.form__container');
-export const userName = document.querySelector('.profile__name');
-export const userDescription = document.querySelector('.profile__description');
-export const userAvatar = document.querySelector('.profile__avatar');
+
 
 
 export const objConfig = {

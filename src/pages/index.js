@@ -17,10 +17,7 @@ import {profileEditButton,
   profileName, 
   profileDescription,
   avatarEditButton, 
-  avatarFormElement,
-  userAvatar,
-  userName,
-  userDescription} from './../utils/constants.js';
+  avatarFormElement} from './../utils/constants.js';
 let ownerId = null;
 
 const api = new Api({
@@ -30,6 +27,19 @@ const api = new Api({
       'Content-Type': 'application/json'
     }
 });
+const popupWithConfirm = new PopupWithConfirm('#popup__confirm', {
+  api: (id, element) => {
+    api.deletePhoto(id)
+      .then(() => {
+         element.remove(); 
+      })
+      .then(() => {
+        popupWithConfirm.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }}); 
 
 const defaultCardList = new Section({
   renderer: (item) => {
@@ -62,16 +72,6 @@ const defaultCardList = new Section({
           })
       },
       handleDeleteCard: (id, element) => {
-        const popupWithConfirm = new PopupWithConfirm('#popup__confirm', id, element, {
-          api: (id, element) => {
-            api.deletePhoto(id)
-              .then(() => {
-                 element.remove(); 
-              })
-              .catch((err) => {
-                console.log(err);
-              })
-          }}); 
         popupWithConfirm.open(id, element);
       }
     }
@@ -83,9 +83,7 @@ const defaultCardList = new Section({
 
 api.getUserInfo()
   .then((res) => {
-    userName.textContent = res.name;
-    userDescription.textContent = res.about;
-    userAvatar.src = res.avatar;
+    userInfo.setUserInfo(res);
     ownerId = res._id;
   })
   .catch((err) => {
@@ -109,13 +107,14 @@ const popupWithFormProfile = new PopupWithForm('#popup__edit-profile',
       .then((res) => {
         userInfo.setUserInfo(res);
       })
+      .then(() => {
+        popupWithFormProfile.close();
+      })
       .catch((err) => {
         console.log(err);
       })
-
       .finally(() => {
         popupWithFormProfile.renderLoading(false);
-        popupWithFormProfile.close();
     })
   },
   setInputs: () => {
@@ -134,13 +133,14 @@ const popupWithFormCard = new PopupWithForm('#popup__edit-card',
       .then((res) => {
         defaultCardList.addItem(res, 'additional');
       })
+      .then(() => {
+        popupWithFormCard.close();
+      })
       .catch((err) => {
         console.log(err);
       })
-
       .finally(() => {
         popupWithFormCard.renderLoading(false);
-        popupWithFormCard.close();
       })
   
   },
@@ -151,7 +151,8 @@ const popupWithFormCard = new PopupWithForm('#popup__edit-card',
 
 const userInfo = new UserInfo({
   userInfoNameSelector: '.profile__name',
-  userInfoDescriptionSelector: '.profile__description'});
+  userInfoDescriptionSelector: '.profile__description',
+  userInfoAvatarSelector: '.profile__avatar'});
 
 const cardForm = new FormValidator(objConfig, cardFormElement);
 const profileForm = new FormValidator(objConfig, profileFormElement);
@@ -182,16 +183,17 @@ const popupWithAvatarForm = new PopupWithForm('#popup__edit-avatar',
       popupWithAvatarForm.renderLoading(true);
       api.updateAvatar(data)
         .then((res) => {
-          document.querySelector('.profile__avatar').src = res.avatar;
+          userInfo.updateAvatar(res);
+        })
+        .then(() => {
+          popupWithAvatarForm.close();
         })
         .catch((err) => {
           console.log(err);
         })
         .finally(() => {
           popupWithAvatarForm.renderLoading(false);
-          popupWithAvatarForm.close();
         })
- 
     },
     setInputs: () => {
       avatarForm.clearValidation();
@@ -199,6 +201,7 @@ const popupWithAvatarForm = new PopupWithForm('#popup__edit-avatar',
 });
 
 popupWithAvatarForm.setEventListeners();
+
 avatarForm.enableValidation();
 
 
